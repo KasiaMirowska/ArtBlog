@@ -10,6 +10,14 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
+  };
+  if (node.internal.type === `ImageSharp`) {
+    const src = createFilePath({ node, getNode, basePath: `images` })
+    createNodeField({
+      node,
+      name: `src`,
+      value: src,
+    })
   }
 }
 
@@ -23,6 +31,13 @@ exports.createPages = ({ graphql, actions }) => {
             fields {
               slug
             }
+          }
+        }
+      },
+      allImageSharp {
+        nodes {
+          original {
+            src
           }
         }
       }

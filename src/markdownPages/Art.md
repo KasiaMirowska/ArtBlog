@@ -1,6 +1,7 @@
 ---
 title: "Why I Love Dibenkorn"
-date: "2017-11-22"
+date: "2018-01-22"
+published: true
 ---
 
 ### Modern Art is the best.

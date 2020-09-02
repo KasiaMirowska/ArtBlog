@@ -1,6 +1,7 @@
 ---
 title: "Art Life"
-date: "2020-01-01"
+date: "2018-02-01"
+published: true
 ---
 
 ### Art life is hard.
