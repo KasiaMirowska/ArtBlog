@@ -9,27 +9,26 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       node,
       name: `slug`,
       value: slug,
-    })
-  };
-  if (node.internal.type === `ImageSharp`) {
-    const src = createFilePath({ node, getNode, basePath: `images` })
-    createNodeField({
-      node,
-      name: `src`,
-      value: src,
-    })
+    });
   }
-}
+};
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
   return graphql(`
     {
-      allMarkdownRemark {
+      allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        filter: { frontmatter: { published: { eq: true }}}
+      ) {
         edges {
           node {
             fields {
               slug
+            }
+            frontmatter {
+              date(formatString: "YYYY MMMM Do")
+              title
             }
           }
         }
@@ -43,12 +42,21 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    if(result.errors) {
+      throw result.errors;
+    }
+    const posts = result.data.allMarkdownRemark.edges;
+    posts.forEach(({ node }, index) => {
+      const previous = index === posts.length-1? null : posts[index +1].node;
+      const next = index === 0? null : posts[index-1].node;
+
       createPage({
         path: node.fields.slug,
         component: path.resolve(`./src/templates/BlogPost.js`),
         context: {
           slug: node.fields.slug,
+          previous,
+          next
         },
       })
     })

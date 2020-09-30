@@ -1,19 +1,45 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
-export default ({ data }) => {
+
+export default ({ data, pageContext }) => {
+  console.log(data, '////', pageContext)
   const post = data.markdownRemark;
-  const image = data.imageSharp;
-  console.log(data);
+  const { previous, next } = pageContext;
+
+  // const { mdx } = data
+  //   const title = mdx.frontmatter.title
+  //   const timeToRead = mdx.timeToRead
+  //   const relativeDate = mdx.frontmatter.date
 
   return (
     <Layout>
       <div>
+        <img src={post.frontmatter.featured.childImageSharp.fluid.src}/>
         <h1>{post.frontmatter.title}</h1>
-        {/* <img src={{image.edges.node.original}} /> */}
+        <p>{post.frontmatter.date}</p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       </div>
+      {previous === false ? null : (
+        <div>
+          {previous && (
+            <Link to={previous.fields.slug}>
+              <p>PREVIOUS POST: {previous.frontmatter.title}</p>
+            </Link>
+          )}
+        </div>
+      )}
+        {next === false ? null : (
+        <div>
+          {next && (
+            <Link to={next.fields.slug}>
+              <p>NEXT POST: {next.frontmatter.title}</p>
+            </Link>
+          )}
+        </div>
+      )}
+
     </Layout>
   )
 }
@@ -24,17 +50,15 @@ export const query = graphql`
       html
       frontmatter {
         title
+        date(formatString: "YYYY MMMM Do")
+        featured {
+          childImageSharp {
+            fluid(maxWidth: 750) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
-    },
-    # imageSharp{original: {src: { eq: $src}}}
+    }
   }
 `;
-// query {
-//   fileName: file(relativePath: { eq: "images/myimage.jpg" }) {
-//     childImageSharp {
-//       fluid(maxWidth: 400, maxHeight: 250) {
-//         ...GatsbyImageSharpFluid
-//       }
-//     }
-//   }
-// }
