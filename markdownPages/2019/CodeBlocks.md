@@ -1,34 +1,46 @@
 ---
-title: Code Blocks
+title: The joy of learning DS and Algorithms
 date: 2019-07-01
 published: true
+featured: "../../src/images/code.jpg"
 ---
 
-## Using Prism React Renderer
+## Maps, recursion and other drama...
 
 
 
 ```jsx
-import React from 'react';
+function mergeSort (unsortedArray) {
+  if (unsortedArray.length <= 1) {
+    return unsortedArray;
+  }
+ 
+  const middle = Math.floor(unsortedArray.length / 2);
 
-const Dump = props => (
-  <div
-    style={{
-      fontSize: 20,
-      border: '1px solid #efefef',
-      padding: 10,
-      background: 'white',
-    }}>
-    {Object.entries(props).map(([key, val]) => (
-      <pre key={key}>
-        <strong style={{ color: 'white', background: 'red' }}>
-          {key} 💩
-        </strong>
-        {JSON.stringify(val, '', ' ')}
-      </pre>
-    ))}
-  </div>
-);
+  const left = unsortedArray.slice(0, middle);
+  const right = unsortedArray.slice(middle);
 
-export default Dump;
+  return merge(
+    mergeSort(left), mergeSort(right)
+  );
+}
+
+function merge (left, right) {
+  let resultArray = [], leftIndex = 0, rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      resultArray.push(left[leftIndex]);
+      leftIndex++; 
+    } else {
+      resultArray.push(right[rightIndex]);
+      rightIndex++; 
+    }
+  }
+
+  return resultArray
+          .concat(left.slice(leftIndex))
+          .concat(right.slice(rightIndex));
+}
+
 ```

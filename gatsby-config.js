@@ -7,49 +7,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
-      resolve: "gatsby-transformer-remark",
-      options: {
-        plugins: [
-          {
-            resolve: "gatsby-remark-images",
-            options: {
-              maxWidth: 750,
-              maxHeight: 150,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
-      },
-    },
-    // // `gatsby-mdx-fix`,
-    // // {
-    // //   resolve: `gatsby-mdx-fix`,
-    // //   options: {
-    // //     extensions: [`.mdx`, `.md`],
-    // //     gatsbyRemarkPlugins: [
-    // //       {
-    // //         resolve: `gatsby-remark-images`,
-    // //         options: {
-    // //           maxWidth: 590,
-    // //         },
-    // //       },
-    //     ],
-    //     plugins: [
-    //       {
-    //         resolve: `gatsby-remark-images`,
-    //         options: {
-    //           maxWidth: 590,
-    //         },
-    //       },
-    //     ],
-    //   },
-    // },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: { path: `${__dirname}/markdownPages`, name: `posts` },
-    },
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -64,6 +22,23 @@ module.exports = {
         path: `${__dirname}/markdownPages`,
       },
     },
+    "gatsby-plugin-sharp",
+    "gatsby-remark-images",
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 750,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
+    },
+    
     {
       resolve: "gatsby-transformer-remark",
       options: {
@@ -88,8 +63,6 @@ module.exports = {
         ]
       }
     },
-    'gatsby-transformer-sharp',
-    `gatsby-transformer-remark`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-manifest`,
