@@ -66,21 +66,4 @@ const PostsList = () => {
     )
 }
 
-// export const query = graphql`
-//   query {
-//     allMarkdownRemark {
-//     edges {
-//       node {
-//         fields {
-//           slug
-//         }
-//         frontmatter {
-//           date(formatString: "YYYY MMMM D")
-//           title
-//         }
-//       }
-//     }
-//   }
-//   }
-// `
 export default PostsList;
