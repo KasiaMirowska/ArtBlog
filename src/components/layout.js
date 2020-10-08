@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
       <Header siteTitle={title} siteDescription={description}/>
       <SEO title={title}
         description={description}
-        image={`${siteUrl}${image}`}
+        image={`${siteUrl}/my-files${image}`}
         pathname={siteUrl}
         siteLanguage={siteLanguage}
         siteLocale={siteLocale}
@@ -34,7 +34,6 @@ const Layout = ({ children }) => {
         //width: `90%`,
       }}
       >
-        {`${siteUrl}${image}`}
        
       <main>{children}</main>
         <footer>

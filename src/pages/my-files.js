@@ -24,6 +24,7 @@ export default ({ data }) => {
                 <td>{node.prettySize}</td>
                 <td>{node.extension}</td>
                 <td>{node.birthTime}</td>
+                <td>{node.relativePath}</td>
               </tr>
             ))}
           </tbody>
