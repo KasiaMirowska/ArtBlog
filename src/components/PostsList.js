@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
-import Layout from "../components/layout"
 import styled from 'styled-components';
 
 const BlogLink = styled(Link)`
@@ -30,40 +29,40 @@ color: orange;
 
 const PostsList = () => {
 
-    const data = useStaticQuery(graphql`
-  query {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: ASC }
-      filter: { frontmatter: { published: { eq: true }}}
-    ) {
-        totalCount,
-        edges {
-            node {
-            fields {
-            slug
-        }
-        frontmatter {
-          date(formatString: "MM/DD/YY")
-          title
+  const data = useStaticQuery(graphql`
+    query {
+      allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: ASC }
+        filter: { frontmatter: { published: { eq: true }}}
+      ) {
+          totalCount,
+          edges {
+              node {
+              fields {
+              slug
+          }
+          frontmatter {
+            date(formatString: "MM/DD/YY")
+            title
+          }
         }
       }
     }
   }
-  }
 `)
-    console.log(data,)
-    const { edges } = data.allMarkdownRemark;
-    return (
-        <div>
-            <Title>POSTS: </Title>
-            {edges.map(({ node }, index) => (
-                <BlogLink to={node.fields.slug} key={index}>
-                    <Text>{node.frontmatter.date} {node.frontmatter.title}</Text>
-                </BlogLink>
-            ))}
+  console.log(data,)
+  const { edges } = data.allMarkdownRemark;
+  return (
+    <div>
+      <Title>POSTS: </Title>
+      {edges.map(({ node }, index) => (
+        <BlogLink to={node.fields.slug} key={index}>
+          <Text>{node.frontmatter.date} {node.frontmatter.title}</Text>
+        </BlogLink>
+      ))}
 
-        </div>
-    )
+    </div>
+  )
 }
 
 export default PostsList;

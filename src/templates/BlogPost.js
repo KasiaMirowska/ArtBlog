@@ -1,7 +1,8 @@
-import React from "react"
+import React, {useSiteMetadata} from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import styled from 'styled-components';
+import SEO from "../components/seo";
 
 const Post = styled.div`
   background-color: white;
@@ -34,10 +35,11 @@ export default ({ data, pageContext }) => {
 
   return (
     <Layout>
+      <SEO image={post.frontmatter.featured.childImageSharp.fluid.src}/>
       <Post>
         {
           post.frontmatter.featured && (
-            <img src={post.frontmatter.featured.childImageSharp.fluid.src} />
+            <img src={post.frontmatter.featured.childImageSharp.fluid.src} alt='post'/>
           )
         }
         <h1>{post.frontmatter.title}</h1>

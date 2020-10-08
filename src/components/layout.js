@@ -9,23 +9,33 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import Header from "./header"
+import SEO from "../components/seo";
 import "./layout.css"
 
 
 const Layout = ({ children }) => {
 
-  const { title, description } = useSiteMetadata();
+  const { title, image, description, siteUrl, siteLanguage, siteLocale, author } = useSiteMetadata();
 
   return (
     <>
       <Header siteTitle={title} siteDescription={description}/>
-      
+      <SEO title={title}
+        description={description}
+        image={`${siteUrl}${image}`}
+        pathname={siteUrl}
+        siteLanguage={siteLanguage}
+        siteLocale={siteLocale}
+        author={author}
+      />
       <div
       style={{
         margin: `0 auto`,
         //width: `90%`,
       }}
       >
+        {`${siteUrl}${image}`}
+       
       <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
