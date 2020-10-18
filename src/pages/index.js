@@ -68,7 +68,7 @@ export default (props) => {
 
   return (  //data comes from the query below
     <Layout>
-      <SEO title="Home"/>
+      <SEO title="From Art to code... My path towards web development and other random thoughts"/>
       <Title>My path towards web development ...and other random thoughts: <span>{totalCount}</span></Title>
 
       <Wrapper>
