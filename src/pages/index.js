@@ -5,6 +5,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 import MyImage from '../components/MyImage';
 import PostsList from '../components/PostsList';
+import banner from '../images/banner.jpg';
 
 const Wrapper = styled.div`
 background-color: white;
@@ -68,7 +69,10 @@ export default (props) => {
 
   return (  //data comes from the query below
     <Layout>
-      <SEO title="From Art to code... My path towards web development and other random thoughts"/>
+      <SEO 
+        title='From Art to code... My path towards web development and other random thoughts'
+        image={banner}
+        />
       <Title>My path towards web development ...and other random thoughts: <span>{totalCount}</span></Title>
 
       <Wrapper>

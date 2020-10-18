@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `From Art to Code...`,
+    title: `From Art to code... My path towards web development and other random thoughts`,
     description: `This is personal journey blog built as a practice project for learning Gatsby and GraphQL`,
-    image: 'public/banner.png',
+    image: '/public/banner.png',
     siteUrl: 'https://from-art-to-code.netlify.app/',
     siteLanguage: 'en-GB',
     siteLocale: 'en_gb',
