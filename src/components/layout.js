@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
       <Header siteTitle={title} siteDescription={description}/>
       <SEO title={title}
         description={description}
-        image={`${siteUrl}/my-files${image}`}
+        image={`${siteUrl}${image}`}
         pathname={siteUrl}
         siteLanguage={siteLanguage}
         siteLocale={siteLocale}
